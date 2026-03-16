@@ -1,0 +1,31 @@
+<!--
+  ~ SPDX-FileCopyrightText: 2026 Jiri Vyskocil
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+<idea-plugin>
+    <id>ai.terok.jetbrains</id>
+    <name>terok</name>
+    <vendor>terok-ai</vendor>
+    <description>Manage terok containerized AI coding agents from your JetBrains IDE.</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+
+    <applicationListeners>
+        <listener class="ai.terok.jetbrains.TerokAppLifecycle"
+            topic="com.intellij.ide.AppLifecycleListener"/>
+    </applicationListeners>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="ai.terok.jetbrains.TerokCliService"/>
+        <projectService serviceImplementation="ai.terok.jetbrains.TerokProjectService"/>
+        <serviceViewContributor implementation="ai.terok.jetbrains.serviceview.TerokServiceContributor"/>
+        <editorTabColorProvider implementation="ai.terok.jetbrains.workspace.TabColor"/>
+        <editorTabTitleProvider implementation="ai.terok.jetbrains.workspace.TabTitle"/>
+        <editorNotificationsProvider implementation="ai.terok.jetbrains.workspace.Banner"/>
+        <statusBarWidgetFactory id="terok.activeTask" implementation="ai.terok.jetbrains.TerokStatusBarWidgetFactory"/>
+        <notificationGroup id="terok" displayType="BALLOON"/>
+        <postStartupActivity implementation="ai.terok.jetbrains.TerokStartupActivity"/>
+    </extensions>
+</idea-plugin>
