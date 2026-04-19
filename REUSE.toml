@@ -1,0 +1,12 @@
+version = 1
+
+[[annotations]]
+path = [
+  "**/*.md",
+  "**/*.properties",
+  "**/*.jar",
+  "gradlew",
+  "gradlew.bat",
+]
+SPDX-FileCopyrightText = "2026 Jiri Vyskocil"
+SPDX-License-Identifier = "Apache-2.0"
